@@ -23,12 +23,24 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    let topImage: UIImageView = {
+        let topImage = UIImageView()
+        topImage.contentMode = .scaleAspectFill
+        topImage.layer.cornerRadius = 8
+        topImage.layer.borderWidth = 1
+        topImage.layer.borderColor = UIColor.white.cgColor
+        topImage.clipsToBounds = true
+        topImage.translatesAutoresizingMaskIntoConstraints = false
+        return topImage
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         setupScrollView()
+        setupTopImageLayout()
     }
     
     func setupScrollView(){
@@ -46,6 +58,16 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    }
+    
+    func setupTopImageLayout() {
+        topImage.image = coverImage
+        
+        contentView.addSubview(topImage)
+        
+        topImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        topImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
+        topImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.748).isActive = true
     }
     
 }
