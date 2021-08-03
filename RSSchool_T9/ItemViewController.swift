@@ -9,10 +9,20 @@
 
 import UIKit
 
-class ItemViewController: UIViewController {
+class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    var coverImage = UIImage()
+    var coverTitle: String!
+    var type: String!
+    
+    var cgPaths = [CGPath?]()
+    var text: String!
+    
+    var galleryImages = [UIImage?]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }

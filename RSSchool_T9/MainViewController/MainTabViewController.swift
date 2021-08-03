@@ -17,6 +17,7 @@ class MainTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "CustomWhiteGray")
+        navigationController?.isNavigationBarHidden = true
         createTabBar()
     }
     

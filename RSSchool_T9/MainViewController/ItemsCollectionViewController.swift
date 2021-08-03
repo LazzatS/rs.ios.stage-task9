@@ -9,9 +9,15 @@
 
 import UIKit
 
+protocol ItemSelectionDelegate {
+    func didChooseStory(with type: String, coverTitle: String, coverImage: UIImage, cgPaths: [CGPath], text: String)
+    func didChooseGallery(with type: String, coverTitle: String, coverImage: UIImage, images: [UIImage])
+}
+
 class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private var collectionView: UICollectionView?
+    var delegate: ItemSelectionDelegate?
     
     static let data = FillingData.data
     
@@ -19,8 +25,13 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
     var titles = [String]()
     var types = [String]()
     
+    var cgPaths = [CGPath?]()
+    var texts = [String?]()
+    var galleryImages = [[UIImage]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         createCollectionView()
         setCoverItemInfo()
     }
@@ -53,6 +64,28 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as! ItemCollectionViewCell
         cell.configure(with: coverImages[indexPath.row], coverTitle: titles[indexPath.row], coverType: types[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let itemVC = ItemViewController()
+        
+        if texts[indexPath.row] != nil {
+            print("chose \(titles[indexPath.row])")
+            delegate?.didChooseStory(with: types[indexPath.row], coverTitle: titles[indexPath.row], coverImage: coverImages[indexPath.row], cgPaths: cgPaths[indexPath.row] as! [CGPath], text: texts[indexPath.row]!)
+            
+//            itemVC.cgPaths = cgPaths[indexPath.row]
+            itemVC.text = texts[indexPath.row]
+        }
+        
+        if texts[indexPath.row] == nil  {
+            delegate?.didChooseGallery(with: types[indexPath.row], coverTitle: titles[indexPath.row], coverImage: coverImages[indexPath.row], images: galleryImages[indexPath.row])
+            itemVC.galleryImages = galleryImages[indexPath.row]
+        }
+        itemVC.coverImage = coverImages[indexPath.row]
+        itemVC.coverTitle = titles[indexPath.row]
+        itemVC.type = types[indexPath.row]
+        navigationController?.pushViewController(itemVC, animated: true)
     }
     
     func collectionViewLayout() -> UICollectionViewFlowLayout {
@@ -91,12 +124,18 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
                     coverImages.append(story.coverImage)
                     titles.append(story.title)
                     types.append(story.type)
+                    cgPaths.append(contentsOf: story.paths)
+                    texts.append(story.text)
+                    galleryImages.append([])
                 }
             case .gallery(let gallery):
                 if titles.count < data.count {
                     coverImages.append(gallery.coverImage)
                     titles.append(gallery.title)
                     types.append(gallery.type)
+                    galleryImages.append(gallery.images)
+                    cgPaths.append(nil)
+                    texts.append(nil)
                 }
             }
         }

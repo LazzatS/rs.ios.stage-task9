@@ -19,7 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootVC = MainTabViewController()
-        window?.rootViewController = rootVC
+        let nav = UINavigationController(rootViewController: rootVC)
+        window?.rootViewController = nav
+        nav.isNavigationBarHidden = true
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
     }
