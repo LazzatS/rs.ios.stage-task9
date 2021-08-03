@@ -15,6 +15,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private let coverImageView: UIImageView = {
         let coverImage = UIImageView()
         coverImage.contentMode = .scaleAspectFill
+        coverImage.layer.cornerRadius = 10
+        coverImage.layer.borderWidth = 1
         coverImage.clipsToBounds = true
         coverImage.translatesAutoresizingMaskIntoConstraints = false
         return coverImage
@@ -23,20 +25,25 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private let coverTitleView: UILabel = {
         let coverTitle = UILabel()
         coverTitle.textColor = .white
+        coverTitle.font = UIFont(name: "Rockwell", size: 16)
         coverTitle.translatesAutoresizingMaskIntoConstraints = false
         return coverTitle
     }()
     
     private let coverTypeView: UILabel = {
         let coverType = UILabel()
-        coverType.textColor = .white
+        coverType.textColor = UIColor(named: "CustomGrayText")
+        coverType.font = UIFont(name: "Rockwell", size: 12)
         coverType.translatesAutoresizingMaskIntoConstraints = false
         return coverType
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemBlue
+        contentView.layer.cornerRadius = 18
+        contentView.layer.borderWidth = 1
+        contentView.backgroundColor = UIColor(named: "CustomWhiteGray")
+        
         contentView.addSubview(coverImageView)
         contentView.addSubview(coverTitleView)
         contentView.addSubview(coverTypeView)

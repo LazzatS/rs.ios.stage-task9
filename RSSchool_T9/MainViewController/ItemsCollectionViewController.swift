@@ -40,6 +40,8 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
         collectionView.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        collectionView.backgroundColor = UIColor(named: "CustomWhiteGray")
         view.addSubview(collectionView)
     }
     
