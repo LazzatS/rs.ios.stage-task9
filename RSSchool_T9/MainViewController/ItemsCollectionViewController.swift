@@ -44,7 +44,11 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func createCollectionView() {
-        collectionView = UICollectionView(frame: CGRect(x: 20, y: 40, width: (view.frame.size.width - 2 * 20), height: (view.frame.size.height - 40)), collectionViewLayout: collectionViewLayout())
+        collectionView = UICollectionView(frame: CGRect(x: 20,
+                                                        y: 40,
+                                                        width: (view.frame.size.width - 2 * 20),
+                                                        height: (view.frame.size.height - 40)),
+                                          collectionViewLayout: collectionViewLayout())
         
         guard let collectionView = collectionView else { return }
         
