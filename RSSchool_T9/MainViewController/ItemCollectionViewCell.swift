@@ -67,9 +67,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         coverImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         coverImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8).isActive = true
         coverImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
-        
-        coverImageView.widthAnchor.constraint(equalToConstant: contentView.frame.size.width).isActive = true
-        coverImageView.heightAnchor.constraint(equalToConstant: contentView.frame.size.height).isActive = true
     }
     
     private func setupTitleLayout() {
