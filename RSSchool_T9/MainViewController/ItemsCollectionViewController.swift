@@ -13,19 +13,11 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
 
     private var collectionView: UICollectionView?
     
-    
     static let data = FillingData.data
     
     var coverImages = [UIImage]()
     var titles = [String]()
     var types = [String]()
-    
-    private let coverImage: UIImageView = {
-        var imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +26,7 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func createCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
-        layout.itemSize = CGSize(width: (view.frame.size.width / 2 - 2), height: (view.frame.size.width / 2 - 2))
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         
         guard let collectionView = collectionView else { return }
         
@@ -56,36 +43,19 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath)
-        
-        let coverImage = UIImageView()
-        coverImage.frame = cell.contentView.bounds
-        coverImage.contentMode = .scaleToFill
-        coverImage.clipsToBounds = true
-        coverImage.image = coverImages[indexPath.row]
-        cell.contentView.addSubview(coverImage)
-        
-        let coverTitle = UILabel()
-        coverTitle.frame = CGRect(x: 10,
-                                  y: cell.contentView.frame.size.height - 50,
-                                  width: cell.contentView.frame.size.height - 50,
-                                  height: 50)
-        coverTitle.textColor = .white
-        coverTitle.text = titles[indexPath.row]
-        cell.contentView.addSubview(coverTitle)
-        
-        let coverType = UILabel()
-        coverType.frame = CGRect(x: 10,
-                                 y: cell.contentView.frame.size.height - 70,
-                                 width: cell.contentView.frame.size.height - 50,
-                                 height: 50)
-        coverType.textColor = .white
-        coverType.text = types[indexPath.row]
-        cell.contentView.addSubview(coverType)
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as! ItemCollectionViewCell
+        cell.configure(with: coverImages[indexPath.row], coverTitle: titles[indexPath.row], coverType: types[indexPath.row])
         return cell
     }
     
+    func collectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
+        layout.itemSize = CGSize(width: (view.frame.size.width / 2 - 2), height: (view.frame.size.width / 2 - 2))
+        return layout
+    }
     
     func setCoverItemInfo() {
         let data = FillingData.data
