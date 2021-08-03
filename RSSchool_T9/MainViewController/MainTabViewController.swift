@@ -11,7 +11,7 @@ import UIKit
 
 class MainTabViewController: UITabBarController {
 
-    let itemsVC = ItemsViewController()
+    let itemsVC = ItemsCollectionViewController()
     let settingsVC = SettingsViewController()
     
     override func viewDidLoad() {
