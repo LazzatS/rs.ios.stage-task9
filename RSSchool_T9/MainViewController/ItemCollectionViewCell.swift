@@ -26,6 +26,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         let coverTitle = UILabel()
         coverTitle.textColor = .white
         coverTitle.font = UIFont(name: "Rockwell", size: 16)
+        coverTitle.numberOfLines = 0
         coverTitle.translatesAutoresizingMaskIntoConstraints = false
         return coverTitle
     }()
@@ -79,6 +80,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     private func setupTitleLayout() {
         coverTitleView.bottomAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: -30).isActive = true
         coverTitleView.leftAnchor.constraint(equalTo: coverImageView.leftAnchor, constant: 10).isActive = true
+        coverTitleView.rightAnchor.constraint(equalTo: coverImageView.rightAnchor, constant: -15).isActive = true
+        coverTitleView.bottomAnchor.constraint(equalTo: coverTypeView.topAnchor, constant: -3).isActive = true
     }
     
     private func setupTypeLayout() {
