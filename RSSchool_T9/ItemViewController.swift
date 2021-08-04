@@ -43,6 +43,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         
         setupScrollView()
         createCloseButton()
+        setupTopImageLayout()
     }
     
     func setupScrollView(){
@@ -75,6 +76,52 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         
         contentView.addSubview(closeButton)
         closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+    }
+    
+    func setupTopImageLayout() {
+        
+        let imageWidth = view.frame.size.width - 20 * 2
+        let imageHeight = imageWidth / 0.748
+        
+        print("image width = \(imageWidth)")
+        print("image height = \(imageHeight)")
+        
+        
+        
+        topImage.frame = CGRect(x: 20, y: 100, width: imageWidth, height: imageHeight)
+        topImage.image = resizeImage(image: coverImage, targetSize: CGSize(width: imageWidth, height: imageHeight))
+        contentView.addSubview(topImage)
+        
+        print(" but image width = \(topImage.frame.size.width)")
+        print(" but image height = \(topImage.frame.size.height)")
+        
+        topImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        topImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
+        topImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
+        topImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     @objc func closeView() {
