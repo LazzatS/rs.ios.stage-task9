@@ -83,17 +83,9 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         let imageWidth = view.frame.size.width - 20 * 2
         let imageHeight = imageWidth / 0.748
         
-        print("image width = \(imageWidth)")
-        print("image height = \(imageHeight)")
-        
-        
-        
         topImage.frame = CGRect(x: 20, y: 100, width: imageWidth, height: imageHeight)
         topImage.image = resizeImage(image: coverImage, targetSize: CGSize(width: imageWidth, height: imageHeight))
         contentView.addSubview(topImage)
-        
-        print(" but image width = \(topImage.frame.size.width)")
-        print(" but image height = \(topImage.frame.size.height)")
         
         topImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
         topImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
@@ -124,8 +116,11 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         return newImage
     }
     
+    func addTitleOnTopImage() {
+        
+    }
+    
     @objc func closeView() {
-        print("tapped")
         self.navigationController?.popViewController(animated: true)
     }
     
