@@ -44,6 +44,8 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         setupScrollView()
         createCloseButton()
         setupTopImageLayout()
+        addTitleOnTopImage()
+        addTypeOnTopImage()
     }
     
     func setupScrollView(){
@@ -117,7 +119,41 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func addTitleOnTopImage() {
+        let title = UILabel()
+        title.text = coverTitle
+        title.numberOfLines = 0
+        title.font = UIFont(name: "Rockwell", size: 48)
+        title.textColor = .white
+        contentView.addSubview(title)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.leftAnchor.constraint(equalTo: topImage.leftAnchor, constant: 30).isActive = true
+        title.rightAnchor.constraint(equalTo: topImage.rightAnchor, constant: -30).isActive = true
+        title.bottomAnchor.constraint(equalTo: topImage.bottomAnchor, constant: -55).isActive = true
+    }
+    
+    func addTypeOnTopImage() {
+        let type = UIButton()
+        type.isEnabled = false
+        if text != nil {
+            type.setTitle("Story", for: .normal)
+            type.frame = CGRect(x: 0, y: 0, width: 122, height: 40)
+        } else {
+            type.setTitle("Gallery", for: .normal)
+            type.frame = CGRect(x: 0, y: 0, width: 152, height: 40)
+        }
+        type.layer.backgroundColor = UIColor.black.cgColor
+        type.layer.borderColor = UIColor.white.cgColor
+        type.layer.cornerRadius = 8
+        type.layer.borderWidth = 1
+        type.titleLabel?.font = UIFont(name: "Rockwell", size: 24)
+        type.titleLabel?.textAlignment = .center
+        type.tintColor = .white
+        contentView.addSubview(type)
         
+        type.translatesAutoresizingMaskIntoConstraints = false
+        type.centerYAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 0).isActive = true
+        type.centerXAnchor.constraint(equalTo: topImage.centerXAnchor, constant: 0).isActive = true
+        type.widthAnchor.constraint(equalTo: topImage.widthAnchor, multiplier: 1/3).isActive = true
     }
     
     @objc func closeView() {
