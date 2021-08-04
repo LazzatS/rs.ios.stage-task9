@@ -25,7 +25,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let topImage: UIImageView = {
         let topImage = UIImageView()
-        topImage.contentMode = .scaleAspectFill
+        topImage.contentMode = .scaleAspectFit
         topImage.layer.cornerRadius = 8
         topImage.layer.borderWidth = 1
         topImage.layer.borderColor = UIColor.white.cgColor
@@ -38,9 +38,11 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        scrollView.backgroundColor = .black
+        contentView.backgroundColor = .black
         
         setupScrollView()
-        setupTopImageLayout()
+        createCloseButton()
     }
     
     func setupScrollView(){
@@ -60,14 +62,24 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
-    func setupTopImageLayout() {
-        topImage.image = coverImage
+    func createCloseButton() {
+        let closeButton = UIButton()
+        closeButton.frame = CGRect(x: 350, y: 30, width: 40, height: 40)
+        closeButton.setImage(UIImage.init(systemName: "xmark"), for: .normal)
+        closeButton.titleLabel?.font = UIFont(name: "SF Pro Display", size: 18)
+        closeButton.setTitleColor(.white, for: .normal)
+        closeButton.tintColor = .white
+        closeButton.layer.cornerRadius = closeButton.frame.size.width / 2
+        closeButton.layer.borderColor = UIColor.white.cgColor
+        closeButton.layer.borderWidth = 1
         
-        contentView.addSubview(topImage)
-        
-        topImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        topImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
-        topImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.748).isActive = true
+        contentView.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+    }
+    
+    @objc func closeView() {
+        print("tapped")
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
