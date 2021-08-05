@@ -78,6 +78,11 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         
         contentView.addSubview(closeButton)
         closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
+        closeButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -25).isActive = true
     }
     
     func setupTopImageLayout() {
