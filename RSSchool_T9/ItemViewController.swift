@@ -25,7 +25,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let topImage: UIImageView = {
         let topImage = UIImageView()
-        topImage.contentMode = .scaleAspectFit
+        topImage.contentMode = .scaleAspectFill
         topImage.layer.cornerRadius = 8
         topImage.layer.borderWidth = 1
         topImage.layer.borderColor = UIColor.white.cgColor
@@ -98,6 +98,8 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         topImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         topImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
         topImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        topImage.widthAnchor.constraint(equalToConstant: imageWidth).isActive = true
+        topImage.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         
     }
     
