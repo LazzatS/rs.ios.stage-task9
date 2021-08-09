@@ -9,6 +9,6 @@
 
 import UIKit
 
-class GalleryCollectionViewCell: UICollectionViewCell {
+class GalleryCollection: UIView {
     
 }
