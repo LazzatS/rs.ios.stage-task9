@@ -46,6 +46,9 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         setupTopImageLayout()
         addTitleOnTopImage()
         addTypeOnTopImage()
+        if text == nil {
+            showGalleryCollection()
+        }
     }
     
     func setupScrollView(){
@@ -161,6 +164,12 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         type.centerYAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 0).isActive = true
         type.centerXAnchor.constraint(equalTo: topImage.centerXAnchor, constant: 0).isActive = true
         type.widthAnchor.constraint(equalTo: topImage.widthAnchor, multiplier: 1/3).isActive = true
+    }
+    
+    func showGalleryCollection() {
+        let galleryCollection = GalleryCollection(frame: CGRect(x: 0, y: (topImage.frame.size.height + 100), width: 100, height: 100))
+        galleryCollection.backgroundColor = .yellow
+        contentView.addSubview(galleryCollection)
     }
     
     @objc func closeView() {

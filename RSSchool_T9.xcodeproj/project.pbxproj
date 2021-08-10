@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1228876D26C16EE200AB74F4 /* GalleryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228876C26C16EE200AB74F4 /* GalleryCollection.swift */; };
+		1228877A26C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */; };
 		1276DAE226B7362A00ABC385 /* ItemsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276DAE126B7362A00ABC385 /* ItemsCollectionViewController.swift */; };
 		12F42C7026B728F00050F2B7 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F42C6F26B728F00050F2B7 /* ItemCollectionViewCell.swift */; };
 		12FD963B26B7129500095BE3 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FD963A26B7129500095BE3 /* MainTabViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		1228876C26C16EE200AB74F4 /* GalleryCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollection.swift; sourceTree = "<group>"; };
+		1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1276DAE126B7362A00ABC385 /* ItemsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewController.swift; sourceTree = "<group>"; };
 		12F42C6F26B728F00050F2B7 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		12FD963A26B7129500095BE3 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
@@ -111,8 +113,9 @@
 				2BB9E76926AB605900112651 /* Info.plist */,
 				12F42C6E26B728BD0050F2B7 /* MainViewController */,
 				12FD963D26B712AB00095BE3 /* ItemViewController.swift */,
-				12FD964026B712FC00095BE3 /* SettingsViewController.swift */,
 				1228876C26C16EE200AB74F4 /* GalleryCollection.swift */,
+				1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */,
+				12FD964026B712FC00095BE3 /* SettingsViewController.swift */,
 			);
 			path = RSSchool_T9;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				12FD963B26B7129500095BE3 /* MainTabViewController.swift in Sources */,
 				2BB9E75C26AB605700112651 /* AppDelegate.swift in Sources */,
 				12FD964126B712FC00095BE3 /* SettingsViewController.swift in Sources */,
+				1228877A26C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift in Sources */,
 				2BB9F30B26AF5EEC00F43852 /* story-3-path.swift in Sources */,
 				12FD963E26B712AB00095BE3 /* ItemViewController.swift in Sources */,
 				1276DAE226B7362A00ABC385 /* ItemsCollectionViewController.swift in Sources */,
