@@ -40,7 +40,6 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         scrollView.backgroundColor = .black
         contentView.backgroundColor = .black
-        
         setupScrollView()
         createCloseButton()
         setupTopImageLayout()
@@ -93,14 +92,13 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         let imageWidth = view.frame.size.width - 20 * 2
         let imageHeight = imageWidth / 0.748
         
-        topImage.frame = CGRect(x: 20, y: 100, width: imageWidth, height: imageHeight)
         topImage.image = resizeImage(image: coverImage, targetSize: CGSize(width: imageWidth, height: imageHeight))
         contentView.addSubview(topImage)
         
         topImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
         topImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
         topImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
-        topImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        topImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: (-CGFloat(galleryImages.count) * (imageHeight + 40))).isActive = true
         topImage.widthAnchor.constraint(equalToConstant: imageWidth).isActive = true
         topImage.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         
@@ -167,9 +165,17 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showGalleryCollection() {
-        let galleryCollection = GalleryCollection(frame: CGRect(x: 0, y: (topImage.frame.size.height + 100), width: 100, height: 100))
-        galleryCollection.backgroundColor = .yellow
+        let galleryCollection = GalleryCollection(frame: CGRect(x: 0,
+                                                                y: (topImage.frame.size.height + 150),
+                                                                width: (view.frame.size.width - 2 * 20),
+                                                                height: view.frame.size.height))
+        galleryCollection.galleryImages = galleryImages
         contentView.addSubview(galleryCollection)
+        galleryCollection.translatesAutoresizingMaskIntoConstraints = false
+        galleryCollection.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 108).isActive = true
+        galleryCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        galleryCollection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
+        galleryCollection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
     }
     
     @objc func closeView() {

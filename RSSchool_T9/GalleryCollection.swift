@@ -12,7 +12,7 @@ import UIKit
 class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var galleryImages = [UIImage?]()
-    private let galleryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var galleryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +28,8 @@ class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func createCollectionView() {
+        galleryCollectionView = UICollectionView(frame: .zero,
+                                                 collectionViewLayout: createGalleryLayout())
         galleryCollectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier)
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
@@ -37,18 +39,24 @@ class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return galleryImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier, for: indexPath) as! GalleryCollectionViewCell
-        cell.backgroundColor = .systemPink
-        cell.configure(with: (galleryImages.randomElement() ?? UIImage(systemName: "xmark"))!)
+        cell.configure(with: galleryImages[indexPath.row]!)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.width)
+    }
+    
+    func createGalleryLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        layout.scrollDirection = .vertical
+        return layout
     }
     
 }
