@@ -34,6 +34,13 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         return topImage
     }()
     
+    let line: UIButton = {
+        let line = UIButton()
+        line.isEnabled = false
+        line.backgroundColor = .white
+        return line
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
@@ -44,6 +51,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         createCloseButton()
         setupTopImageLayout()
         addTitleOnTopImage()
+        addSeparatingLine()
         addTypeOnTopImage()
         if text == nil {
             showGalleryCollection()
@@ -141,6 +149,16 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         type.widthAnchor.constraint(equalTo: topImage.widthAnchor, multiplier: 1/3).isActive = true
     }
     
+    func addSeparatingLine() {
+        contentView.addSubview(line)
+
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 58).isActive = true
+        line.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 214).isActive = true
+        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
+    
     func showGalleryCollection() {
         let galleryCollection = GalleryCollection(frame: CGRect(x: 0,
                                                                 y: (topImage.frame.size.height + 150),
@@ -149,7 +167,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         galleryCollection.galleryImages = galleryImages
         contentView.addSubview(galleryCollection)
         galleryCollection.translatesAutoresizingMaskIntoConstraints = false
-        galleryCollection.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 108).isActive = true
+        galleryCollection.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 40).isActive = true
         galleryCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
         galleryCollection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
         galleryCollection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
