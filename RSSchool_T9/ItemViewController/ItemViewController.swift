@@ -92,7 +92,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         let imageWidth = view.frame.size.width - 20 * 2
         let imageHeight = imageWidth / 0.748
         
-        topImage.image = resizeImage(image: coverImage, targetSize: CGSize(width: imageWidth, height: imageHeight))
+        topImage.image = coverImage
         contentView.addSubview(topImage)
         
         topImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
@@ -101,29 +101,6 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         topImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: (-CGFloat(galleryImages.count) * (imageHeight + 40))).isActive = true
         topImage.widthAnchor.constraint(equalToConstant: imageWidth).isActive = true
         topImage.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
-        
-    }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
-        }
-        let rect = CGRect(origin: .zero, size: newSize)
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
     }
     
     func addTitleOnTopImage() {

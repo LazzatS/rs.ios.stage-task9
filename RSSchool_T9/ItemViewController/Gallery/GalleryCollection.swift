@@ -33,7 +33,6 @@ class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataS
         galleryCollectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: GalleryCollectionViewCell.identifier)
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
-        galleryCollectionView.backgroundColor = .red
         self.addSubview(galleryCollectionView)
         
     }
@@ -49,7 +48,9 @@ class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.width)
+        let imageWidth = self.frame.size.width
+        let imageHeight = imageWidth / 0.721
+        return CGSize(width: imageWidth, height: imageHeight)
     }
     
     func createGalleryLayout() -> UICollectionViewFlowLayout {
