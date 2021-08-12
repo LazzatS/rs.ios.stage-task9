@@ -15,6 +15,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 4.0
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -22,6 +23,9 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
+        contentView.layer.borderColor = UIColor.white.cgColor
+        contentView.layer.borderWidth = 1.0
+        contentView.layer.cornerRadius = 8.0
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +34,12 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = contentView.bounds
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
     }
     
     override func prepareForReuse() {

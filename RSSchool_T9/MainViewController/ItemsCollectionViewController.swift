@@ -109,12 +109,9 @@ class ItemsCollectionViewController: UIViewController, UICollectionViewDelegate,
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         
         collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        
         collectionView?.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
-        
         collectionView?.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         collectionView?.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
         collectionView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         collectionView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
