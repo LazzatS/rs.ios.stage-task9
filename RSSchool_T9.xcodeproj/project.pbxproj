@@ -75,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1238F7E726C571C400AA7F8C /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				1228876C26C16EE200AB74F4 /* GalleryCollection.swift */,
+				1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		12F42C6E26B728BD0050F2B7 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +92,15 @@
 				12F42C6F26B728F00050F2B7 /* ItemCollectionViewCell.swift */,
 			);
 			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		12F7C7DF26C570FE00627306 /* ItemViewController */ = {
+			isa = PBXGroup;
+			children = (
+				12FD963D26B712AB00095BE3 /* ItemViewController.swift */,
+				1238F7E726C571C400AA7F8C /* Gallery */,
+			);
+			path = ItemViewController;
 			sourceTree = "<group>";
 		};
 		2BB9E74F26AB605700112651 = {
@@ -112,9 +130,7 @@
 				2BB9E76626AB605900112651 /* LaunchScreen.storyboard */,
 				2BB9E76926AB605900112651 /* Info.plist */,
 				12F42C6E26B728BD0050F2B7 /* MainViewController */,
-				12FD963D26B712AB00095BE3 /* ItemViewController.swift */,
-				1228876C26C16EE200AB74F4 /* GalleryCollection.swift */,
-				1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */,
+				12F7C7DF26C570FE00627306 /* ItemViewController */,
 				12FD964026B712FC00095BE3 /* SettingsViewController.swift */,
 			);
 			path = RSSchool_T9;
