@@ -164,6 +164,7 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                 y: (topImage.frame.size.height + 150),
                                                                 width: (view.frame.size.width - 2 * 20),
                                                                 height: view.frame.size.height))
+        galleryCollection.delegate = self
         galleryCollection.galleryImages = galleryImages
         contentView.addSubview(galleryCollection)
         galleryCollection.translatesAutoresizingMaskIntoConstraints = false
@@ -177,4 +178,12 @@ class ItemViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension ItemViewController: GalleryCollectionDelegate {
+    func didSelectImage(image: UIImage) {
+        let galleryImageVC = GalleryImageViewController()
+        galleryImageVC.imageNeeded = image
+        self.navigationController?.pushViewController(galleryImageVC, animated: true)
+    }
 }

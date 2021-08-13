@@ -9,10 +9,16 @@
 
 import UIKit
 
+protocol GalleryCollectionDelegate: AnyObject {
+    func didSelectImage(image: UIImage)
+}
+
 class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var galleryImages = [UIImage?]()
     private var galleryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    weak var delegate: GalleryCollectionDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +51,11 @@ class GalleryCollection: UIView, UICollectionViewDelegate, UICollectionViewDataS
         let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier, for: indexPath) as! GalleryCollectionViewCell
         cell.configure(with: galleryImages[indexPath.row]!)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectImage(image: galleryImages[indexPath.row]!)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
