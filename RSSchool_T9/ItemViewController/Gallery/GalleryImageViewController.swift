@@ -9,9 +9,14 @@
 
 import UIKit
 
-class GalleryImageViewController: UIViewController {
+class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
 
-    let galleryImageScrollView = UIScrollView()
+    let galleryImageScrollView: UIScrollView = {
+        let galleryImageScrollView = UIScrollView()
+        galleryImageScrollView.maximumZoomScale = 3
+        galleryImageScrollView.minimumZoomScale = 1
+        return galleryImageScrollView
+    }()
     let galleryImageContentView = UIView()
     var imageNeeded = UIImage()
     
@@ -31,6 +36,8 @@ class GalleryImageViewController: UIViewController {
     }
     
     func setupScrollView(){
+        galleryImageScrollView.delegate = self
+        
         galleryImageScrollView.translatesAutoresizingMaskIntoConstraints = false
         galleryImageContentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(galleryImageScrollView)
@@ -67,6 +74,10 @@ class GalleryImageViewController: UIViewController {
         imageToShow.heightAnchor.constraint(equalTo: imageToShow.widthAnchor, multiplier: scaleAspect).isActive = true
         imageToShow.centerXAnchor.constraint(equalTo: galleryImageContentView.centerXAnchor).isActive = true
         imageToShow.centerYAnchor.constraint(equalTo: galleryImageContentView.centerYAnchor).isActive = true
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageToShow
     }
     
 }
