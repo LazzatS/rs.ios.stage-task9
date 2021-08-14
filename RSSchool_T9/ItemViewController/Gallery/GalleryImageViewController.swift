@@ -31,8 +31,6 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        galleryImageScrollView.backgroundColor = .yellow
-        galleryImageContentView.backgroundColor = .cyan
         setupScrollView()
         showImage()
     }
@@ -74,6 +72,29 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageToShow
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        if scrollView.zoomScale > 1 {
+            if let image = imageToShow.image {
+                let ratioWidth = imageToShow.frame.width / image.size.width
+                let ratioHeight = imageToShow.frame.height / image.size.height
+                
+                let ratio = ratioWidth < ratioHeight ? ratioWidth : ratioHeight
+                let newWidth = image.size.width * ratio
+                let newHeight = image.size.height * ratio
+                
+                let conditionLeft = newWidth * scrollView.zoomScale > imageToShow.frame.width
+                let left = 0.5 * (conditionLeft ? newWidth - imageToShow.frame.width : (scrollView.frame.width - scrollView.contentSize.width))
+                
+                let conditionTop = newHeight * scrollView.zoomScale > imageToShow.frame.height
+                let top = 0.5 * (conditionTop ? newHeight - imageToShow.frame.height : (scrollView.frame.height - scrollView.contentSize.height))
+                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
+                
+            }
+        } else {
+            scrollView.contentInset = .zero
+        }
     }
     
 }
