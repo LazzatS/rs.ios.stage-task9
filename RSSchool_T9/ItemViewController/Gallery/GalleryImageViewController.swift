@@ -28,15 +28,19 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
         return imageToShow
     }()
     
+    let closeButton = UIButton()
+    var hideCloseButton: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         setupScrollView()
         showImage()
+        callGestureRecognizer()
         createCloseButton()
     }
     
-    func setupScrollView(){
+    func setupScrollView() {
         galleryImageScrollView.delegate = self
         
         galleryImageScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +73,6 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func createCloseButton() {
-        let closeButton = UIButton()
         closeButton.frame = CGRect(x: 350, y: 30, width: 40, height: 40)
         closeButton.setImage(UIImage.init(systemName: "xmark"), for: .normal)
         closeButton.titleLabel?.font = UIFont(name: "SF Pro Display", size: 18)
@@ -86,6 +89,14 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
         closeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         closeButton.topAnchor.constraint(equalTo: galleryImageContentView.topAnchor, constant: 30).isActive = true
         closeButton.rightAnchor.constraint(equalTo: galleryImageContentView.rightAnchor, constant: -25).isActive = true
+    }
+    
+    func callGestureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gestureCalled(_:)))
+        gestureRecognizer.numberOfTapsRequired = 1
+        gestureRecognizer.numberOfTouchesRequired = 1
+        imageToShow.addGestureRecognizer(gestureRecognizer)
+        imageToShow.isUserInteractionEnabled = true
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -116,6 +127,16 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func closeView() {
-            self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func gestureCalled(_ gesture: UITapGestureRecognizer) {
+        hideCloseButton.toggle()
+        if hideCloseButton {
+            closeButton.isHidden = true
         }
+        if !hideCloseButton {
+            closeButton.isHidden = false
+        }
+    }
 }
