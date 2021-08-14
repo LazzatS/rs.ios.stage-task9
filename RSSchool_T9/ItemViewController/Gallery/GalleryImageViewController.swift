@@ -33,6 +33,7 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .black
         setupScrollView()
         showImage()
+        createCloseButton()
     }
     
     func setupScrollView(){
@@ -59,15 +60,32 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     func showImage() {
         imageToShow.image = imageNeeded
         galleryImageContentView.addSubview(imageToShow)
-        createImageLayout()
-    }
-    
-    func createImageLayout() {
+        
         imageToShow.topAnchor.constraint(equalTo: galleryImageContentView.topAnchor).isActive = true
         imageToShow.bottomAnchor.constraint(equalTo: galleryImageContentView.bottomAnchor).isActive = true
         imageToShow.leadingAnchor.constraint(equalTo: galleryImageContentView.leadingAnchor).isActive = true
         imageToShow.centerXAnchor.constraint(equalTo: galleryImageContentView.centerXAnchor).isActive = true
         imageToShow.centerYAnchor.constraint(equalTo: galleryImageContentView.centerYAnchor).isActive = true
+    }
+    
+    func createCloseButton() {
+        let closeButton = UIButton()
+        closeButton.frame = CGRect(x: 350, y: 30, width: 40, height: 40)
+        closeButton.setImage(UIImage.init(systemName: "xmark"), for: .normal)
+        closeButton.titleLabel?.font = UIFont(name: "SF Pro Display", size: 18)
+        closeButton.setTitleColor(.white, for: .normal)
+        closeButton.tintColor = .white
+        closeButton.layer.cornerRadius = closeButton.frame.size.width / 2
+        closeButton.layer.borderColor = UIColor.white.cgColor
+        closeButton.layer.borderWidth = 1
+        
+        galleryImageContentView.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        closeButton.topAnchor.constraint(equalTo: galleryImageContentView.topAnchor, constant: 30).isActive = true
+        closeButton.rightAnchor.constraint(equalTo: galleryImageContentView.rightAnchor, constant: -25).isActive = true
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -97,4 +115,7 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    @objc func closeView() {
+            self.navigationController?.popViewController(animated: true)
+        }
 }
