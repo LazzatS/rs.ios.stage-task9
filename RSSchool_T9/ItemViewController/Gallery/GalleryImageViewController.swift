@@ -59,10 +59,10 @@ class GalleryImageViewController: UIViewController, UIScrollViewDelegate {
     func showImage() {
         imageToShow.image = imageNeeded
         galleryImageContentView.addSubview(imageToShow)
-        createPortraitImageLayout()
+        createImageLayout()
     }
     
-    func createPortraitImageLayout() {
+    func createImageLayout() {
         imageToShow.topAnchor.constraint(equalTo: galleryImageContentView.topAnchor).isActive = true
         imageToShow.bottomAnchor.constraint(equalTo: galleryImageContentView.bottomAnchor).isActive = true
         imageToShow.leadingAnchor.constraint(equalTo: galleryImageContentView.leadingAnchor).isActive = true
