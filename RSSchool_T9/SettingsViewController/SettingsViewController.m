@@ -12,6 +12,7 @@
 @interface SettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *settingsTableView;
+@property (strong, nonatomic) NSArray *settings;
 
 @end
 
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.settings = @[@"Draw stories", @"Stroke color"];
     [self createSettingsTableView];
 }
 
@@ -50,7 +51,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     [cell.heightAnchor constraintEqualToConstant: (self.settingsTableView.frame.size.height / 2)].active = true;
-    cell.textLabel.text = @"blabla";
+    
+    cell.textLabel.text = self.settings[indexPath.row];
+    
     return cell;
 }
 
