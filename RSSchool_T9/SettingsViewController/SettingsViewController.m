@@ -21,7 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.settings = @[@"Draw stories", @"Stroke color"];
+    self.navigationController.navigationBar.topItem.title = @"Settings";
     [self createSettingsTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void) createSettingsTableView {
