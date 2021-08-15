@@ -55,6 +55,7 @@
     [cell.heightAnchor constraintEqualToConstant: cellHeight].active = true;
     
     cell.textLabel.text = self.settings[indexPath.row];
+    cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
     
     return cell;
 }
