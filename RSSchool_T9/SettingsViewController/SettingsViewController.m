@@ -42,7 +42,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.settings.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -50,7 +50,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    [cell.heightAnchor constraintEqualToConstant: (self.settingsTableView.frame.size.height / 2)].active = true;
+    
+    CGFloat cellHeight = self.settingsTableView.frame.size.height / self.settings.count;
+    [cell.heightAnchor constraintEqualToConstant: cellHeight].active = true;
     
     cell.textLabel.text = self.settings[indexPath.row];
     
