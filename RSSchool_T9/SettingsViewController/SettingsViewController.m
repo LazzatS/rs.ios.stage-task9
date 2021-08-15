@@ -57,6 +57,9 @@
     cell.textLabel.text = self.settings[indexPath.row];
     cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
     
+    // silence the warning
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+    
     return cell;
 }
 
