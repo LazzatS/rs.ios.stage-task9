@@ -57,10 +57,21 @@
     cell.textLabel.text = self.settings[indexPath.row];
     cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
     
+    if (indexPath.row == 0) {
+        UISwitch *switchOnOff = [[UISwitch alloc] init];
+        [switchOnOff addTarget:self action:@selector(didChangeSwitch:) forControlEvents:UIControlEventTouchUpInside];
+        switchOnOff.on = YES;
+        [cell setAccessoryView:switchOnOff];
+    }
+    
     // silence the warning
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
     return cell;
+}
+
+- (void) didChangeSwitch: (id) sender {
+
 }
 
 @end
