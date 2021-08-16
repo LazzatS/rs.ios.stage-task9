@@ -8,11 +8,13 @@
 // Copyright © 2021 RSSchool. All rights reserved.
 
 #import "SettingsViewController.h"
+#import "ColorsViewController.h"
 
 @interface SettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *settingsTableView;
 @property (strong, nonatomic) NSArray *settings;
+@property (strong, nonatomic) ColorsViewController *colorsVC;
 
 @end
 
@@ -75,10 +77,21 @@
         [cell setAccessoryView:switchOnOff];
     }
     
+    if (indexPath.row == 1) {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
+    
     // silence the warning
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 1) {
+        self.colorsVC = [[ColorsViewController alloc] init];
+        [self.navigationController pushViewController:self.colorsVC animated:true];
+    }
 }
 
 - (void) didChangeSwitch: (id) sender {

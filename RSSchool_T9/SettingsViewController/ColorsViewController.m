@@ -8,8 +8,9 @@
 // Copyright © 2021 RSSchool. All rights reserved.
 
 #import "ColorsViewController.h"
+#import "SettingsViewController.h"
 
-@interface ColorsViewController ()
+@interface ColorsViewController () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -17,17 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
 }
 
-/*
-#pragma mark - Navigation
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.view.backgroundColor = [UIColor cyanColor];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.topItem.backBarButtonItem.tintColor = [UIColor redColor];
+    self.navigationController.navigationBar.topItem.title = @"";
 }
-*/
 
 @end

@@ -11,6 +11,7 @@
 		1228876D26C16EE200AB74F4 /* GalleryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228876C26C16EE200AB74F4 /* GalleryCollection.swift */; };
 		1228877A26C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */; };
 		1276DAE226B7362A00ABC385 /* ItemsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276DAE126B7362A00ABC385 /* ItemsCollectionViewController.swift */; };
+		12CE350A26C9A91C00F815B8 /* ColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CE350926C9A91C00F815B8 /* ColorsViewController.m */; };
 		12F35E3026C8D28600DDB682 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F35E2F26C8D28600DDB682 /* SettingsViewController.m */; };
 		12F42C7026B728F00050F2B7 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F42C6F26B728F00050F2B7 /* ItemCollectionViewCell.swift */; };
 		12FD963B26B7129500095BE3 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FD963A26B7129500095BE3 /* MainTabViewController.swift */; };
@@ -40,6 +41,8 @@
 		1228876C26C16EE200AB74F4 /* GalleryCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollection.swift; sourceTree = "<group>"; };
 		1228877926C2D6CE00AB74F4 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1276DAE126B7362A00ABC385 /* ItemsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewController.swift; sourceTree = "<group>"; };
+		12CE350826C9A91C00F815B8 /* ColorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorsViewController.h; sourceTree = "<group>"; };
+		12CE350926C9A91C00F815B8 /* ColorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorsViewController.m; sourceTree = "<group>"; };
 		12F35E2A26C8CCC300DDB682 /* RSSchool_T9-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSchool_T9-Bridging-Header.h"; sourceTree = "<group>"; };
 		12F35E2E26C8D28600DDB682 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		12F35E2F26C8D28600DDB682 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 			children = (
 				12F35E2E26C8D28600DDB682 /* SettingsViewController.h */,
 				12F35E2F26C8D28600DDB682 /* SettingsViewController.m */,
+				12CE350826C9A91C00F815B8 /* ColorsViewController.h */,
+				12CE350926C9A91C00F815B8 /* ColorsViewController.m */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			files = (
 				2BB9F30126AF557E00F43852 /* story-2-path.swift in Sources */,
 				12F42C7026B728F00050F2B7 /* ItemCollectionViewCell.swift in Sources */,
+				12CE350A26C9A91C00F815B8 /* ColorsViewController.m in Sources */,
 				120F4C3126C5B7CC0003F216 /* GalleryImageViewController.swift in Sources */,
 				12F35E3026C8D28600DDB682 /* SettingsViewController.m in Sources */,
 				12FD963B26B7129500095BE3 /* MainTabViewController.swift in Sources */,
