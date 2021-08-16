@@ -28,7 +28,7 @@
     self.view.backgroundColor = [UIColor cyanColor];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.topItem.backBarButtonItem.tintColor = [UIColor redColor];
+    self.navigationController.navigationBar.tintColor = [UIColor redColor];
     self.navigationController.navigationBar.topItem.title = @"";
 }
 
