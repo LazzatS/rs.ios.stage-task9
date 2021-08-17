@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UITableView *colorsTableView;
 @property (strong, nonatomic) NSArray *colors;
+@property (strong, nonatomic) NSString *defaultColor;
 
 @end
 
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.colors = @[@"#be2813", @"#3802da", @"#467c24", @"#808080", @"#8e5af7", @"#f07f5a", @"#f3af22", @"#3dacf7", @"#e87aa4", @"#0f2e3f", @"#213711", @"#511307", @"#92003b"];
+    self.defaultColor = @"e87aa4";
     [self createColorsTableView];
 }
 
@@ -57,10 +59,8 @@
     [cell.heightAnchor constraintEqualToConstant: cellHeight].active = true;
     
     cell.textLabel.text = self.colors[indexPath.row];
+    cell.textLabel.textColor = [UIColor colorNamed:self.colors[indexPath.row]];
     cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
-    
-    // silence the warning
-    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
     return cell;
 }
@@ -68,7 +68,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.view.backgroundColor = [UIColor cyanColor];
+    self.view.backgroundColor = [UIColor colorNamed:@"CustomBlueGray"];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor redColor];
