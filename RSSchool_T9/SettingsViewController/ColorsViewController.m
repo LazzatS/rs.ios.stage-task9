@@ -24,8 +24,18 @@
     [super viewDidLoad];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.colors = @[@"#be2813", @"#3802da", @"#467c24", @"#808080", @"#8e5af7", @"#f07f5a", @"#f3af22", @"#3dacf7", @"#e87aa4", @"#0f2e3f", @"#213711", @"#511307", @"#92003b"];
-    self.defaultColor = @"e87aa4";
+    self.defaultColor = @"#e87aa4";
     [self createColorsTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.view.backgroundColor = [UIColor colorNamed:@"CustomBlueGray"];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.tintColor = [UIColor redColor];
+    self.navigationController.navigationBar.topItem.title = @"";
 }
 
 - (void) createColorsTableView {
@@ -62,17 +72,12 @@
     cell.textLabel.textColor = [UIColor colorNamed:self.colors[indexPath.row]];
     cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
     
+    if (self.colors[indexPath.row] == self.defaultColor) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [cell setTintColor: [UIColor redColor]];
+    }
+
     return cell;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    self.view.backgroundColor = [UIColor colorNamed:@"CustomBlueGray"];
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.tintColor = [UIColor redColor];
-    self.navigationController.navigationBar.topItem.title = @"";
 }
 
 @end
