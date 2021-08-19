@@ -11,8 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ColorsViewController : UIViewController
+@protocol ColorSelectionDelegate <NSObject>
+- (void) didChooseColor: (NSString *)colorName;
+@end
 
+@interface ColorsViewController : UIViewController
+@property (nonatomic, weak) id <ColorSelectionDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

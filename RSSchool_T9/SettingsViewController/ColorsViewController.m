@@ -79,6 +79,7 @@
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
     [selectedCell setTintColor:[UIColor redColor]];
+    [self.delegate didChooseColor:selectedCell.textLabel.text];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
