@@ -71,13 +71,19 @@
     cell.textLabel.text = self.colors[indexPath.row];
     cell.textLabel.textColor = [UIColor colorNamed:self.colors[indexPath.row]];
     cell.backgroundColor = [UIColor colorNamed:@"CustomGrayForSettings"];
-    
-    if (self.colors[indexPath.row] == self.defaultColor) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [cell setTintColor: [UIColor redColor]];
-    }
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [selectedCell setTintColor:[UIColor redColor]];
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *deselectDefaultCell = [tableView cellForRowAtIndexPath:indexPath];
+    deselectDefaultCell.accessoryType = UITableViewCellAccessoryNone;
 }
 
 @end
